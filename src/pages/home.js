@@ -13,14 +13,17 @@ const homePage = (function () {
         if (!isLoggedIn) {
             const signupButton = document.createElement("button");
             signupButton.textContent = "Sign Up";
+            signupButton.type = "button";
             buttonContainer.appendChild(signupButton);
             
             const loginButton = document.createElement("button");
             loginButton.textContent = "Log In";
+            loginButton.type = "button";
             buttonContainer.appendChild(loginButton);
         } else {
             const viewDashButton = document.createElement("button");
             viewDashButton.textContent = "View Projects";
+            viewDashButton.type = "button";
             buttonContainer.appendChild(viewDashButton);
         }
         

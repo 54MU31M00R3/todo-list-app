@@ -1,0 +1,80 @@
+const signupForm = (function () {
+    const getHeadline = () => {
+        const headline = document.createElement("div");
+        headline.textContent = "Sign Up";
+        headline.id = "form-header";
+        return headline;
+    }
+    const getFormFields = () => {
+        const formFields = document.createElement("form");
+        formFields.id = "sign-up-form"
+
+        const nameLabel = document.createElement("label");
+        nameLabel.for = "username";
+        nameLabel.textContent = "Username";
+        formFields.appendChild(nameLabel);
+
+        const nameInput = document.createElement("input");
+        nameInput.name = "username";
+        nameInput.type = "text";
+        formFields.appendChild(nameInput);
+
+        const passwordLabel = document.createElement("label");
+        passwordLabel.for = "password";
+        passwordLabel.textContent = "Password";
+        formFields.appendChild(passwordLabel);
+
+        const passwordInput = document.createElement("input");
+        passwordInput.name = "password";
+        passwordInput.type = "password";
+        formFields.appendChild(passwordInput);
+
+        const passwordConfLabel = document.createElement("label");
+        passwordConfLabel.for = "password-confirmation";
+        passwordConfLabel.textContent = "Confirm Password";
+        formFields.appendChild(passwordConfLabel);
+
+        const passwordConfInput = document.createElement("input");
+        passwordConfInput.name = "password-confirmation";
+        passwordConfInput.type = "password";
+        formFields.appendChild(passwordConfInput);
+
+        return formFields;
+    }
+    const getFormButtons = () => {
+        const buttonContainer = document.createElement("div");
+        buttonContainer.id = "form-buttons";
+
+        const createAcctBtn = document.createElement("button");
+        createAcctBtn.id = "create-acct-btn";
+        createAcctBtn.type = "button";
+        createAcctBtn.textContent = "Create Account";
+        buttonContainer.appendChild(createAcctBtn);
+
+        const exitBtn = document.createElement("button");
+        exitBtn.id = "exit-btn";
+        exitBtn.type = "button";
+        exitBtn.textContent = "Exit";
+        buttonContainer.appendChild(exitBtn);
+
+        return buttonContainer;
+    }
+    const getForm = () => {
+        const page = document.createElement("div");
+        page.id ="content";
+
+        const headline = getHeadline();
+        page.appendChild(headline);
+
+        const formFields = getFormFields();
+        page.appendChild(formFields);
+
+        const formButtons = getFormButtons();
+        page.appendChild(formButtons);
+
+        return page;
+    }
+    return { getForm };
+})();
+
+export { signupForm };
