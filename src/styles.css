@@ -1,0 +1,151 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+h1 {
+    font-family: 'learning_curvebold';
+    font-size: 250px;
+    margin: 0;
+    text-align: center;
+}
+
+#home-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+#home-buttons>button {
+    flex: 1;
+    height: 50px;
+    font-family: 'sansationbold';
+    font-size: 24px;
+    background-color: orange;
+    border-radius: 16px;
+    border-style: hidden;
+    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+@font-face {
+    font-family: 'action_manregular';
+    src: url('./assets/fonts/action_man-webfont.woff2') format('woff2'),
+         url('./assets/fonts/action_man-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'action_manbold';
+    src: url('./assets/fonts/action_man_bold-webfont.woff2') format('woff2'),
+         url('./assets/fonts/action_man_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'action_man_shadedregular';
+    src: url('./assets/fonts/action_man_shaded-webfont.woff2') format('woff2'),
+         url('./assets/fonts/action_man_shaded-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'learning_curvebold';
+    src: url('./assets/fonts/learning_curve_bold_ot_tt-webfont.woff2') format('woff2'),
+         url('./assets/fonts/learning_curve_bold_ot_tt-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'learning_curveregular';
+    src: url('./assets/fonts/learning_curve_regular_ot_tt-webfont.woff2') format('woff2'),
+         url('./assets/fonts/learning_curve_regular_ot_tt-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotobold';
+    src: url('./assets/fonts/roboto-bold-webfont.woff2') format('woff2'),
+         url('./assets/fonts/roboto-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'robotoregular';
+    src: url('./assets/fonts/roboto-regular-webfont.woff2') format('woff2'),
+         url('./assets/fonts/roboto-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'sansationbold';
+    src: url('./assets/fonts/sansation-bold-webfont.woff2') format('woff2'),
+         url('./assets/fonts/sansation-bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'sansationregular';
+    src: url('./assets/fonts/sansation-regular-webfont.woff2') format('woff2'),
+         url('./assets/fonts/sansation-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
+
+@font-face {
+    font-family: 'seasideresortnfregular';
+    src: url('./assets/fonts/seasrn__-webfont.woff2') format('woff2'),
+         url('./assets/fonts/seasrn__-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
