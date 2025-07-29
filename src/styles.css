@@ -4,8 +4,14 @@ html {
 
 body {
     height: 100%;
+    margin:0;
+}
+
+#content {
+    height: 100%;
     margin: 0;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -20,6 +26,7 @@ h1 {
 #home-buttons {
     display: flex;
     gap: 16px;
+    width: 50%;
 }
 
 #home-buttons>button {
@@ -66,6 +73,89 @@ h1 {
 
 form {
     font-family: 'robotoregular';
+}
+
+#header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#app-title {
+    font-family: 'learning_curvebold';
+    font-size: 82px;
+    padding-left: 16px;
+    display: flex;
+    align-items: center;
+}
+
+#nav-links {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 0;
+    width: 25%;
+    padding-right: 8px;
+}
+
+li, li>button {
+    width: 100%;
+    height: 40px;
+}
+
+li>button {
+    font-family: 'sansationbold';
+    font-size: 16px;
+    border-radius: 16px;
+    border-style: hidden;
+    background-color: orange;
+    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+#cards {
+    background-color: rgb(199, 199, 199);
+    height: 100%;
+    padding: 16px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(375px, 400px));
+    grid-template-rows: 125px;
+}
+
+.project-card {
+    display: flex;
+    padding: 20px;
+    flex-direction: column;
+    background-color: white;
+    justify-content: space-between;
+    border-radius: 8px;
+    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.2);
+
+}
+
+.upper-card {
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.lower-card {
+    display: flex;
+    gap: 50%;
+}
+
+.card-button {
+    font-family: 'sansationbold';
+    flex: 1;
+    height: 32px;
+    border-radius: 16px;
+    border-style: hidden;
+    background-color: orange;
+    box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.2);
+}
+
+.project-title, .project-date {
+    font-family: 'action_manregular';
+    font-size: 20px;
 }
 
 @font-face {

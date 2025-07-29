@@ -6,17 +6,23 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="content">
-      <div id="form-header">Log In</div>
-      <form id="auth-form">
-        <label for="username">Username</label>
-        <input name="username" type="text" />
-        <label for="password">Password</label>
-        <input name="password" type="password" />
-      </form>
-      <div id="form-buttons">
-        <button type="button">Log In</button>
-        <button type="button">Exit</button>
+    <div id="header">
+      <div id="app-title">Todo</div>
+      <ul id="nav-links">
+        <li><button>Home</button></li>
+        <li><button>Projects</button></li>
+      </ul>
+    </div>
+    <div id="cards">
+      <div class="project-card">
+        <div class="upper-card">
+            <div class="project-title">Cottage Trip</div>
+            <div class="project-date">Aug 9-12, 2025</div>
+        </div>
+        <div class="lower-card">
+          <button class="card-button">View</button>
+          <button class="card-button">Delete</button>
+        </div>
       </div>
     </div>
   </body>
