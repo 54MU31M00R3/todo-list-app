@@ -98,12 +98,9 @@ form {
     padding-right: 8px;
 }
 
-li, li>button {
+.nav-button {
     width: 100%;
     height: 40px;
-}
-
-li>button {
     font-family: 'sansationbold';
     font-size: 16px;
     border-radius: 16px;
@@ -119,6 +116,7 @@ li>button {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(375px, 400px));
     grid-template-rows: 125px;
+    gap: 16px;
 }
 
 .project-card {
