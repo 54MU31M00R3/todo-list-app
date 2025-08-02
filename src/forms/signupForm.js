@@ -7,7 +7,7 @@ const signupForm = (function () {
     }
     const getFormFields = () => {
         const formFields = document.createElement("form");
-        formFields.id = "sign-up-form"
+        formFields.id = "form-fields"
 
         const nameLabel = document.createElement("label");
         nameLabel.for = "username";
@@ -63,14 +63,18 @@ const signupForm = (function () {
         const page = document.createElement("div");
         page.id ="content";
 
+        const formContainer = document.createElement("div")
+        formContainer.id = "form-container";
+        page.appendChild(formContainer);
+
         const headline = getHeadline();
-        page.appendChild(headline);
+        formContainer.appendChild(headline);
 
         const formFields = getFormFields();
-        page.appendChild(formFields);
+        formContainer.appendChild(formFields);
 
         const formButtons = getFormButtons();
-        page.appendChild(formButtons);
+        formContainer.appendChild(formButtons);
 
         return page;
     }

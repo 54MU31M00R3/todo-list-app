@@ -1,44 +1,36 @@
-const loginForm = (function () {
+const newProjectForm = (function () {
     const getHeadline = () => {
         const headline = document.createElement("div");
-        headline.textContent = "Log In";
+        headline.textContent = "Project";
         headline.id = "form-header";
         return headline;
     }
+
     const getFormFields = () => {
         const formFields = document.createElement("form");
-        formFields.id = "form-fields"
+        formFields.id = "form-fields";
 
-        const nameLabel = document.createElement("label");
-        nameLabel.for = "username";
-        nameLabel.textContent = "Username";
-        formFields.appendChild(nameLabel);
+        const projectLabel = document.createElement("label");
+        projectLabel.for = "project";
+        projectLabel.textContent = "Project Name";
+        formFields.appendChild(projectLabel);
 
-        const nameInput = document.createElement("input");
-        nameInput.name = "username";
-        nameInput.type = "text";
-        formFields.appendChild(nameInput);
-
-        const passwordLabel = document.createElement("label");
-        passwordLabel.for = "password";
-        passwordLabel.textContent = "Password";
-        formFields.appendChild(passwordLabel);
-
-        const passwordInput = document.createElement("input");
-        passwordInput.name = "password";
-        passwordInput.type = "password";
-        formFields.appendChild(passwordInput);
+        const projectInput = document.createElement("input");
+        projectInput.name = "project";
+        projectInput.type = "text";
+        formFields.appendChild(projectInput);
 
         return formFields;
     }
+
     const getFormButtons = () => {
         const buttonContainer = document.createElement("div");
         buttonContainer.id = "form-buttons";
 
-        const loginBtn = document.createElement("button");
-        loginBtn.type = "button";
-        loginBtn.textContent = "Log In";
-        buttonContainer.appendChild(loginBtn);
+        const createBtn = document.createElement("button");
+        createBtn.type = "button";
+        createBtn.textContent = "Create";
+        buttonContainer.appendChild(createBtn);
 
         const exitBtn = document.createElement("button");
         exitBtn.type = "button";
@@ -47,9 +39,10 @@ const loginForm = (function () {
 
         return buttonContainer;
     }
+
     const getForm = () => {
         const page = document.createElement("div");
-        page.id ="content";
+        page.id = "content";
 
         const formContainer = document.createElement("div")
         formContainer.id = "form-container";
@@ -69,4 +62,4 @@ const loginForm = (function () {
     return { getForm };
 })();
 
-export { loginForm };
+export { newProjectForm };
