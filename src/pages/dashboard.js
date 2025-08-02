@@ -5,7 +5,6 @@ const projects = [
     { name: "Cyberpunk Merch Website", date: "2025-07-19" },
     { name: "Gelato Pop-Up Marketing", date: "2025-07-23" }
   ];
-  
 
 const dashPage = (function () {
     const getHeader = () => {

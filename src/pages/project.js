@@ -17,10 +17,10 @@ const projectPage = (function () {
         homeButton.textContent = "Home"
         nav.appendChild(homeButton);
 
-        const newProjectButton = document.createElement("button");
-        newProjectButton.className = "nav-button"
-        newProjectButton.textContent = "New Todo"
-        nav.appendChild(newProjectButton);
+        const newTodoButton = document.createElement("button");
+        newTodoButton.className = "nav-button"
+        newTodoButton.textContent = "New Todo"
+        nav.appendChild(newTodoButton);
 
         return header;
     }
@@ -37,7 +37,7 @@ const projectPage = (function () {
         todoCard.appendChild(upperCard);
 
         const todoTitle = document.createElement("div");
-        todoTitle.textContent = "Cottage Trip";
+        todoTitle.textContent = "Shopping List";
         todoTitle.className = "todo-title";
         upperCard.appendChild(todoTitle);
 
