@@ -54,6 +54,10 @@ const signupForm = (function () {
         createAcctBtn.textContent = "Create Account";
         buttonContainer.appendChild(createAcctBtn);
 
+        createAcctBtn.addEventListener("click", () => {
+
+        });
+
         const exitBtn = document.createElement("button");
         exitBtn.id = "exit-btn";
         exitBtn.type = "button";
@@ -63,7 +67,7 @@ const signupForm = (function () {
         exitBtn.addEventListener("click", () => {
             cleanup.body();
             document.body.appendChild(homePage.getPage());
-        })
+        });
 
         return buttonContainer;
     }
