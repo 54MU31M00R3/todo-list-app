@@ -1,3 +1,6 @@
+import { cleanup } from "../helper/cleanup";
+import { homePage } from "../pages/home";
+
 const signupForm = (function () {
     const getHeadline = () => {
         const headline = document.createElement("div");
@@ -56,6 +59,11 @@ const signupForm = (function () {
         exitBtn.type = "button";
         exitBtn.textContent = "Exit";
         buttonContainer.appendChild(exitBtn);
+
+        exitBtn.addEventListener("click", () => {
+            cleanup.body();
+            document.body.appendChild(homePage.getPage());
+        })
 
         return buttonContainer;
     }

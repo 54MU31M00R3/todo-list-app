@@ -1,3 +1,7 @@
+import { loginForm } from "../forms/loginForm";
+import { signupForm } from "../forms/signupForm";
+import { cleanup } from "../helper/cleanup";
+
 let isLoggedIn = false;
 
 const homePage = (function () {
@@ -15,11 +19,21 @@ const homePage = (function () {
             signupButton.textContent = "Sign Up";
             signupButton.type = "button";
             buttonContainer.appendChild(signupButton);
+
+            signupButton.addEventListener("click", () => {
+                cleanup.body();
+                document.body.appendChild(signupForm.getForm());
+            })
             
             const loginButton = document.createElement("button");
             loginButton.textContent = "Log In";
             loginButton.type = "button";
             buttonContainer.appendChild(loginButton);
+
+            loginButton.addEventListener("click", () => {
+                cleanup.body();
+                document.body.appendChild(loginForm.getForm());
+            })
         } else {
             const viewDashButton = document.createElement("button");
             viewDashButton.textContent = "View Projects";
