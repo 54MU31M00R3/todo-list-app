@@ -198,6 +198,11 @@ div:has(#header) {
     font-size: 22px;
 }
 
+textarea {
+    resize: vertical;
+    height: 50px;
+}
+
 @font-face {
     font-family: 'action_manregular';
     src: url('./assets/fonts/action_man-webfont.woff2') format('woff2'),
@@ -206,9 +211,6 @@ div:has(#header) {
     font-style: normal;
 
 }
-
-
-
 
 @font-face {
     font-family: 'action_manbold';
@@ -219,9 +221,6 @@ div:has(#header) {
 
 }
 
-
-
-
 @font-face {
     font-family: 'action_man_shadedregular';
     src: url('./assets/fonts/action_man_shaded-webfont.woff2') format('woff2'),
@@ -231,9 +230,6 @@ div:has(#header) {
 
 }
 
-
-
-
 @font-face {
     font-family: 'learning_curvebold';
     src: url('./assets/fonts/learning_curve_bold_ot_tt-webfont.woff2') format('woff2'),
@@ -242,9 +238,6 @@ div:has(#header) {
     font-style: normal;
 
 }
-
-
-
 
 @font-face {
     font-family: 'learning_curveregular';
