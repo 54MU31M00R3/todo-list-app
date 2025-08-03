@@ -1,5 +1,7 @@
 import { homePage } from "../pages/home";
 import { cleanup } from "../helper/cleanup";
+import { userController } from "../controllers/userController";
+import { userLogger, isLoggedIn } from "../helper/loggedIn";
 
 const loginForm = (function () {
     const getHeadline = () => {
@@ -42,6 +44,23 @@ const loginForm = (function () {
         loginBtn.type = "button";
         loginBtn.textContent = "Log In";
         buttonContainer.appendChild(loginBtn);
+
+        loginBtn.addEventListener("click", () => {
+            const username = document.querySelector("input[name=username]").value;
+            const password = document.querySelector("input[name=password]").value;
+
+            const success = userController.authUser(username, password);
+
+            if (success){
+                console.log("logged in successfully");
+                cleanup.body();
+                userLogger.switchLog();
+                console.log(isLoggedIn);
+                document.body.appendChild(homePage.getPage());
+            } else {
+                console.log("user doesn't exist or something doesn't match");
+            }
+        });
 
         const exitBtn = document.createElement("button");
         exitBtn.type = "button";

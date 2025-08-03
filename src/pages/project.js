@@ -1,3 +1,7 @@
+import { homePage } from "./home";
+import { cleanup } from "../helper/cleanup";
+import { userLogger, isLoggedIn } from "../helper/loggedIn";
+
 const projectPage = (function () {
     const getHeader = () => {
         const header = document.createElement("div");
@@ -17,10 +21,27 @@ const projectPage = (function () {
         homeButton.textContent = "Home"
         nav.appendChild(homeButton);
 
+        homeButton.addEventListener("click", () => {
+            cleanup.body();
+            document.body.appendChild(homePage.getPage());
+        })
+
         const newTodoButton = document.createElement("button");
         newTodoButton.className = "nav-button"
         newTodoButton.textContent = "New Todo"
         nav.appendChild(newTodoButton);
+
+        const logoutButton = document.createElement("button");
+        logoutButton.className = "nav-button"
+        logoutButton.textContent = "Log Out"
+        nav.appendChild(logoutButton);
+
+        logoutButton.addEventListener("click", () => {
+            cleanup.body();
+            userLogger.switchLog();
+            console.log(isLoggedIn);
+            document.body.appendChild(homePage.getPage());
+        })
 
         return header;
     }

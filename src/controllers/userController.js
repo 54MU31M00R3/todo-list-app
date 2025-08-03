@@ -11,7 +11,10 @@ const userController = (function () {
             return userDB.insertUser(new User(username, password1));
         }
     }
-    return { createUser };
+    const authUser = (username, password) => {
+        return userDB.existingUser(username, password);
+    }
+    return { createUser, authUser };
 })();
 
 export { userController };
