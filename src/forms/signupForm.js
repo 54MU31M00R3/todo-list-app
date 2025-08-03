@@ -1,5 +1,8 @@
 import { cleanup } from "../helper/cleanup";
 import { homePage } from "../pages/home";
+import { userController } from "../controllers/userController";
+
+import { userLogger, isLoggedIn } from "../helper/loggedIn";
 
 const signupForm = (function () {
     const getHeadline = () => {
@@ -55,7 +58,26 @@ const signupForm = (function () {
         buttonContainer.appendChild(createAcctBtn);
 
         createAcctBtn.addEventListener("click", () => {
+            const username = document.querySelector("input[name=username]").value;
+            
+            const password = document.querySelector("input[name=password]").value;
+            const passwordConf = document.querySelector("input[name=password-confirmation]").value;
 
+            if (password !== passwordConf){
+                console.log(password, passwordConf);
+                alert("password mismatch");
+            } else {
+                const success = userController.createUser(username, password, passwordConf);
+                if (success) {
+                    console.log("account created successfully")
+                    cleanup.body();
+                    userLogger.switchLog();
+                    console.log(isLoggedIn);
+                    document.body.appendChild(homePage.getPage());
+                } else {
+                    console.log("something went wrong, please try again later");
+                }
+            }
         });
 
         const exitBtn = document.createElement("button");

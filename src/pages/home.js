@@ -1,8 +1,10 @@
 import { loginForm } from "../forms/loginForm";
 import { signupForm } from "../forms/signupForm";
-import { cleanup } from "../helper/cleanup";
 
-let isLoggedIn = false;
+import { projectPage } from "./project";
+
+import { cleanup } from "../helper/cleanup";
+import { isLoggedIn } from "../helper/loggedIn";
 
 const homePage = (function () {
     const getHeadline = () => {
@@ -39,6 +41,11 @@ const homePage = (function () {
             viewDashButton.textContent = "View Projects";
             viewDashButton.type = "button";
             buttonContainer.appendChild(viewDashButton);
+
+            viewDashButton.addEventListener("click", () => {
+                cleanup.body();
+                document.body.appendChild(projectPage.getPage());
+            })
         }
         
         return buttonContainer;

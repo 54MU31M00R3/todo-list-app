@@ -1,4 +1,5 @@
 import { User } from "../models/user";
+import { userDB } from "../localstorage/userDB";
 
 const userController = (function () {
     const createUser = (username, password1, password2) => {
@@ -7,9 +8,10 @@ const userController = (function () {
             console.log("password mismatch");
             return false;
         } else {
-            const newUser = new User(username, password1);
+            return userDB.insertUser(new User(username, password1));
         }
     }
+    return { createUser };
 })();
 
-export { userDB };
+export { userController };
