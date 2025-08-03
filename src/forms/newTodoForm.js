@@ -42,6 +42,25 @@ const newTodoForm = ( function () {
         const priorityRadio = getPriorityRadio();
         formFields.appendChild(priorityRadio);
 
+        const noteLabel = document.createElement("label");
+        noteLabel.for = "note";
+        noteLabel.textContent = "Note";
+        formFields.appendChild(noteLabel);
+
+        const noteInput = document.createElement("textarea");
+        noteInput.name = "note";
+        formFields.appendChild(noteInput);
+
+        const listLabel = document.createElement("label");
+        listLabel.for = "list";
+        listLabel.textContent = "List";
+        formFields.appendChild(listLabel);
+
+        const listInput = document.createElement("textarea");
+        listInput.name = "list";
+        listInput.placeholder = "Separate items with ','"
+        formFields.appendChild(listInput);
+
         return formFields;
     }
 
@@ -57,11 +76,12 @@ const newTodoForm = ( function () {
         lowInput.name = "priority";
         lowInput.value = "low";
         lowInput.type = "radio";
+        lowInput.id = "low";
         const lowLabel = document.createElement("label");
         lowLabel.for = "low";
         lowLabel.textContent = "Low"
-        lowRadio.appendChild(lowInput);
         lowRadio.appendChild(lowLabel);
+        lowLabel.prepend(lowInput);
         radioContainer.appendChild(lowRadio);
 
         const medRadio = document.createElement("div");
@@ -69,11 +89,12 @@ const newTodoForm = ( function () {
         medInput.name = "priority";
         medInput.value = "medium";
         medInput.type = "radio";
+        medInput.id = "medium";
         const medLabel = document.createElement("label");
         medLabel.for = "medium";
         medLabel.textContent = "Medium";
-        medRadio.appendChild(medInput);
         medRadio.appendChild(medLabel);
+        medLabel.prepend(medInput);
         radioContainer.appendChild(medRadio);
         
         const highRadio = document.createElement("div"); 
@@ -81,11 +102,12 @@ const newTodoForm = ( function () {
         highInput.name = "priority";
         highInput.value = "high";
         highInput.type = "radio";
+        highInput.id = "high";
         const highLabel = document.createElement("label");
         highLabel.for = "high"
         highLabel.textContent = "High";
-        highRadio.appendChild(highInput);
         highRadio.appendChild(highLabel);
+        highLabel.prepend(highInput);
         radioContainer.appendChild(highRadio);
 
         return radioContainer;
@@ -94,16 +116,6 @@ const newTodoForm = ( function () {
     const getFormButtons = () => {
         const buttonContainer = document.createElement("div");
         buttonContainer.id = "form-buttons";
-
-        const noteBtn = document.createElement("button");
-        noteBtn.type = "button";
-        noteBtn.textContent = "Add Note";
-        buttonContainer.appendChild(noteBtn);
-
-        const listBtn = document.createElement("button");
-        listBtn.type = "button";
-        listBtn.textContent = "Add List";
-        buttonContainer.appendChild(listBtn);
 
         const createBtn = document.createElement("button");
         createBtn.type = "button";
