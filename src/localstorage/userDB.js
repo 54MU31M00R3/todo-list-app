@@ -35,7 +35,14 @@ const userDB = (function () {
         }
 
     }
-    return { insertUser, existingUser };
+    const allUsers = () => {
+        return JSON.parse(localStorage.getItem("users"));
+    }
+    const updateUsers = (users) => {
+        localStorage.setItem("users", JSON.stringify(users));
+        console.log(users);
+    }
+    return { insertUser, existingUser, allUsers, updateUsers };
 })();
 
 export { userDB };
