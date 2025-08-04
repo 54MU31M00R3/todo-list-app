@@ -10,6 +10,8 @@ import { cleanup } from "../helper/cleanup";
 import { homePage } from "./home";
 import { userLogger, isLoggedIn } from "../helper/loggedIn";
 
+import { newProjectForm } from "../forms/newProjectForm";
+
 const dashPage = (function () {
     const getHeader = () => {
         const header = document.createElement("div");
@@ -32,12 +34,17 @@ const dashPage = (function () {
         homeButton.addEventListener("click", () => {
             cleanup.body();
             document.body.appendChild(homePage.getPage());
-        })
+        });
 
         const newProjectButton = document.createElement("button");
         newProjectButton.className = "nav-button"
         newProjectButton.textContent = "New Project"
         nav.appendChild(newProjectButton);
+
+        newProjectButton.addEventListener("click", () => {
+            cleanup.body();
+            document.body.appendChild(newProjectForm.getForm());
+        });
 
         const logoutButton = document.createElement("button");
         logoutButton.className = "nav-button"
@@ -48,7 +55,7 @@ const dashPage = (function () {
             cleanup.body();
             userLogger.switchLog();
             document.body.appendChild(homePage.getPage());
-        })
+        });
 
         return header;
     }

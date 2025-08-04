@@ -1,12 +1,21 @@
 const userDB = (function () {
-    localStorage.setItem("users", "[]")
+    localStorage.setItem("users", `[${JSON.stringify({
+        username: "sam",
+        password: "test",
+        projects: []
+    })}]`)
     const insertUser = (newUser) => {
-        let users = JSON.parse(localStorage.getItem("users"));
-        users.push(newUser);
+        try {
+            let users = JSON.parse(localStorage.getItem("users"));
+            users.push(newUser);
 
-        localStorage.setItem("users", JSON.stringify(users));
+            console.log(users);
+            localStorage.setItem("users", JSON.stringify(users));
 
-        return true;
+            return true;
+        } catch {
+            return false;
+        }
     }
     const existingUser = (username, password) => {
         let users = JSON.parse(localStorage.getItem("users"));

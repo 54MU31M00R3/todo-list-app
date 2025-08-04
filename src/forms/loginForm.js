@@ -55,6 +55,7 @@ const loginForm = (function () {
                 console.log("logged in successfully");
                 cleanup.body();
                 userLogger.switchLog();
+                userLogger.setActiveUser(username);
                 document.body.appendChild(homePage.getPage());
             } else {
                 console.log("user doesn't exist or something doesn't match");

@@ -1,4 +1,5 @@
 let isLoggedIn = false;
+let activeUser;
 
 const userLogger = (function () {
     const switchLog = () => {
@@ -8,7 +9,10 @@ const userLogger = (function () {
             isLoggedIn = true;
         }
     }
-    return { switchLog }
+    const setActiveUser = (user) => {
+        activeUser = user;
+    }
+    return { switchLog, setActiveUser }
 })();
 
-export { userLogger, isLoggedIn };
+export { userLogger, isLoggedIn, activeUser };

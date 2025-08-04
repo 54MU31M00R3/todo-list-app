@@ -1,3 +1,7 @@
+import { dashPage } from "../pages/dashboard";
+import { projectController } from "../controllers/projectController";
+import { cleanup } from "../helper/cleanup";
+
 const newProjectForm = (function () {
     const getHeadline = () => {
         const headline = document.createElement("div");
@@ -20,6 +24,16 @@ const newProjectForm = (function () {
         projectInput.type = "text";
         formFields.appendChild(projectInput);
 
+        const dateLabel = document.createElement("label");
+        dateLabel.for = "dueDate";
+        dateLabel.textContent = "Due Date";
+        formFields.appendChild(dateLabel);
+
+        const dateInput = document.createElement("input");
+        dateInput.type = "date";
+        dateInput.name = "dueDate";
+        formFields.appendChild(dateInput);
+
         return formFields;
     }
 
@@ -32,10 +46,30 @@ const newProjectForm = (function () {
         createBtn.textContent = "Create";
         buttonContainer.appendChild(createBtn);
 
+        createBtn.addEventListener("click", () => {
+            const title = document.querySelector("input[name=project]").value;
+            const date = document.querySelector("input[name=dueDate").value;
+        
+            const success = projectController.createProject(title, date);
+
+            if (success) {
+                console.log("project created successfully");
+                cleanup.body();
+                document.body.appendChild(dashPage.getPage());
+            } else {
+                console.log("something went wrong, please try again later.");
+            }
+        })
+
         const exitBtn = document.createElement("button");
         exitBtn.type = "button";
         exitBtn.textContent = "Exit";
         buttonContainer.appendChild(exitBtn);
+
+        exitBtn.addEventListener("click", () => {
+            cleanup.body();
+            document.body.appendChild(dashPage.getPage());
+        })
 
         return buttonContainer;
     }
