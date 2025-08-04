@@ -28,10 +28,30 @@ const projectDB = (function () {
             return false;
         }
     }
-    const allProjects = () => {
+    const readUserProjects = (activeUser) => {
+        const projects = JSON.parse(localStorage.getItem("projects"));
+        
+        let users = JSON.parse(localStorage.getItem("users"));
 
+        const user = users.filter((user) => {
+            if (user.username === activeUser){
+                return true;
+            } else {
+                return false;
+            }
+        });
+
+        let userProjects = [];
+        
+        projects.forEach((project) => {
+            if (user[0].projects.includes(project.title)){
+                userProjects.push(project);
+            }
+        })
+
+        return userProjects;
     }
-    return { insertProject };
+    return { insertProject, readUserProjects };
 })();
 
 export { projectDB };

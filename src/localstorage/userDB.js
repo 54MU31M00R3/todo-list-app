@@ -2,7 +2,7 @@ const userDB = (function () {
     localStorage.setItem("users", `[${JSON.stringify({
         username: "sam",
         password: "test",
-        projects: []
+        projects: ["Cottage Trip"]
     })}]`)
     const insertUser = (newUser) => {
         try {

@@ -8,9 +8,11 @@ const projects = [
 
 import { cleanup } from "../helper/cleanup";
 import { homePage } from "./home";
-import { userLogger, isLoggedIn } from "../helper/loggedIn";
+import { userLogger} from "../helper/loggedIn";
 
 import { newProjectForm } from "../forms/newProjectForm";
+import { projectController } from "../controllers/projectController";
+
 
 const dashPage = (function () {
     const getHeader = () => {
@@ -63,38 +65,41 @@ const dashPage = (function () {
         const cards = document.createElement("div");
         cards.id = "cards";
 
-        const projectCard = document.createElement("div");
-        projectCard.className = "project-card";
-        cards.appendChild(projectCard);
+        const userProjects = projectController.getProjects();
 
-        const upperCard = document.createElement("div");
-        upperCard.className = "upper-card"
-        projectCard.appendChild(upperCard);
+        userProjects.forEach((project) => {
+            const projectCard = document.createElement("div");
+            projectCard.className = "project-card";
+            cards.appendChild(projectCard);
 
-        const projectTitle = document.createElement("div");
-        projectTitle.textContent = "Cottage Trip";
-        projectTitle.className = "project-title";
-        upperCard.appendChild(projectTitle);
+            const upperCard = document.createElement("div");
+            upperCard.className = "upper-card"
+            projectCard.appendChild(upperCard);
 
-        const projectDate = document.createElement("div");
-        projectDate.textContent = "2023-11-23";
-        projectDate.className = "project-date";
-        upperCard.appendChild(projectDate);
+            const projectTitle = document.createElement("div");
+            projectTitle.textContent = project.title;
+            projectTitle.className = "project-title";
+            upperCard.appendChild(projectTitle);
 
-        const lowerCard = document.createElement("div");
-        lowerCard.className = "lower-card";
-        projectCard.appendChild(lowerCard);
+            const projectDate = document.createElement("div");
+            projectDate.textContent = project.date;
+            projectDate.className = "project-date";
+            upperCard.appendChild(projectDate);
 
-        const viewButton = document.createElement("button");
-        viewButton.className = "card-button";
-        viewButton.textContent = "View";
-        lowerCard.appendChild(viewButton);
+            const lowerCard = document.createElement("div");
+            lowerCard.className = "lower-card";
+            projectCard.appendChild(lowerCard);
 
-        const deleteButton = document.createElement("button");
-        deleteButton.className = "card-button";
-        deleteButton.textContent = "Delete";
-        lowerCard.appendChild(deleteButton);
+            const viewButton = document.createElement("button");
+            viewButton.className = "card-button";
+            viewButton.textContent = "View";
+            lowerCard.appendChild(viewButton);
 
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "card-button";
+            deleteButton.textContent = "Delete";
+            lowerCard.appendChild(deleteButton);
+        });
         return cards;
     }
     const getPage = () => {

@@ -8,7 +8,7 @@ const projectController = (function () {
         return projectDB.insertProject(new Project(name, date), activeUser)
     }
     const getProjects = () => {
-
+        return projectDB.readUserProjects(activeUser);
     }
     return { createProject, getProjects };
 })();

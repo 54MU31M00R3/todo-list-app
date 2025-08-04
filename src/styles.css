@@ -115,7 +115,7 @@ form {
     padding: 16px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(375px, 400px));
-    grid-template-rows: 125px;
+    grid-template-rows: repeat(auto-fit, minmax(125px, 150px));
     gap: 16px;
 }
 
