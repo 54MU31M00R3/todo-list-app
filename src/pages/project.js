@@ -39,7 +39,6 @@ const projectPage = (function () {
         logoutButton.addEventListener("click", () => {
             cleanup.body();
             userLogger.switchLog();
-            console.log(isLoggedIn);
             document.body.appendChild(homePage.getPage());
         })
 

@@ -72,7 +72,6 @@ const signupForm = (function () {
                     console.log("account created successfully")
                     cleanup.body();
                     userLogger.switchLog();
-                    console.log(isLoggedIn);
                     document.body.appendChild(homePage.getPage());
                 } else {
                     console.log("something went wrong, please try again later");

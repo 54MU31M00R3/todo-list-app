@@ -5,7 +5,6 @@ const userDB = (function () {
         users.push(newUser);
 
         localStorage.setItem("users", JSON.stringify(users));
-        console.log(users);
 
         return true;
     }
@@ -20,7 +19,7 @@ const userDB = (function () {
             }
         });
 
-        if (user) {
+        if (user.length === 1) {
             return true;
         } else {
             return false;

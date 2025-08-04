@@ -1,7 +1,7 @@
 import { loginForm } from "../forms/loginForm";
 import { signupForm } from "../forms/signupForm";
 
-import { projectPage } from "./project";
+import { dashPage } from "./dashboard";
 
 import { cleanup } from "../helper/cleanup";
 import { isLoggedIn } from "../helper/loggedIn";
@@ -44,7 +44,7 @@ const homePage = (function () {
 
             viewDashButton.addEventListener("click", () => {
                 cleanup.body();
-                document.body.appendChild(projectPage.getPage());
+                document.body.appendChild(dashPage.getPage());
             })
         }
         

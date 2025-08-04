@@ -6,6 +6,10 @@ const projects = [
     { name: "Gelato Pop-Up Marketing", date: "2025-07-23" }
   ];
 
+import { cleanup } from "../helper/cleanup";
+import { homePage } from "./home";
+import { userLogger, isLoggedIn } from "../helper/loggedIn";
+
 const dashPage = (function () {
     const getHeader = () => {
         const header = document.createElement("div");
@@ -25,10 +29,26 @@ const dashPage = (function () {
         homeButton.textContent = "Home"
         nav.appendChild(homeButton);
 
+        homeButton.addEventListener("click", () => {
+            cleanup.body();
+            document.body.appendChild(homePage.getPage());
+        })
+
         const newProjectButton = document.createElement("button");
         newProjectButton.className = "nav-button"
         newProjectButton.textContent = "New Project"
         nav.appendChild(newProjectButton);
+
+        const logoutButton = document.createElement("button");
+        logoutButton.className = "nav-button"
+        logoutButton.textContent = "Log Out"
+        nav.appendChild(logoutButton);
+
+        logoutButton.addEventListener("click", () => {
+            cleanup.body();
+            userLogger.switchLog();
+            document.body.appendChild(homePage.getPage());
+        })
 
         return header;
     }
