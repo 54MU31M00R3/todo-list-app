@@ -1,3 +1,7 @@
+import { todoController } from "../controllers/todoController";
+import { projectPage } from "../pages/project";
+import { cleanup } from "../helper/cleanup";
+
 const newTodoForm = ( function () {
     const getHeadline = () => {
         const headline = document.createElement("div");
@@ -42,6 +46,9 @@ const newTodoForm = ( function () {
         const priorityRadio = getPriorityRadio();
         formFields.appendChild(priorityRadio);
 
+        const completeRadio = getCompletedRadio();
+        formFields.appendChild(completeRadio);
+
         const noteLabel = document.createElement("label");
         noteLabel.for = "note";
         noteLabel.textContent = "Note";
@@ -52,16 +59,62 @@ const newTodoForm = ( function () {
         formFields.appendChild(noteInput);
 
         const listLabel = document.createElement("label");
-        listLabel.for = "list";
-        listLabel.textContent = "List";
+        listLabel.for = "list-title";
+        listLabel.textContent = "list Name";
         formFields.appendChild(listLabel);
 
-        const listInput = document.createElement("textarea");
-        listInput.name = "list";
-        listInput.placeholder = "Separate items with ','"
+        const listInput = document.createElement("input");
+        listInput.name = "list-title";
+        listInput.type = "text";
         formFields.appendChild(listInput);
 
+        const listItemsLabel = document.createElement("label");
+        listItemsLabel.for = "list-items";
+        listItemsLabel.textContent = "List Items";
+        formFields.appendChild(listItemsLabel);
+
+        const listItemsInput = document.createElement("textarea");
+        listItemsInput.name = "list-items";
+        listItemsInput.placeholder = "Separate items with ','"
+        formFields.appendChild(listItemsInput);
+
         return formFields;
+    }
+
+    const getCompletedRadio = () => {
+        const radioContainer = document.createElement("fieldset");
+
+        const radioLegend = document.createElement("legend");
+        radioLegend.textContent = "Completion Status";
+        radioContainer.appendChild(radioLegend);
+
+        const completeRadio = document.createElement("div");
+        const completeInput = document.createElement("input");
+        completeInput.name = "completion";
+        completeInput.value = "complete";
+        completeInput.type = "radio";
+        completeInput.id = "complete";
+        const completeLabel = document.createElement("label");
+        completeLabel.for = "complete";
+        completeLabel.textContent = "Completed"
+        completeRadio.appendChild(completeLabel);
+        completeLabel.prepend(completeInput);
+        radioContainer.appendChild(completeRadio);
+
+        const incompleteRadio = document.createElement("div");
+        const incompleteInput = document.createElement("input");
+        incompleteInput.name = "completion";
+        incompleteInput.value = "incomplete";
+        incompleteInput.type = "radio";
+        incompleteInput.id = "incomplete";
+        const incompleteLabel = document.createElement("label");
+        incompleteLabel.for = "incomplete";
+        incompleteLabel.textContent = "Incompleted"
+        incompleteRadio.appendChild(incompleteLabel);
+        incompleteLabel.prepend(incompleteInput);
+        radioContainer.appendChild(incompleteRadio);
+        
+        return radioContainer;
     }
 
     const getPriorityRadio = () => {
@@ -122,10 +175,35 @@ const newTodoForm = ( function () {
         createBtn.textContent = "Create";
         buttonContainer.appendChild(createBtn);
 
+        createBtn.addEventListener("click", () => {
+            const title = document.querySelector("input[name=todo]").value;
+            const desc = document.querySelector("textarea[name=todoDesc]").value;
+            const date = document.querySelector("input[name=dueDate]").value;
+            const priority = document.querySelector("input[name=priority]:checked").value;
+            const completed = document.querySelector("input[name=completion]").value;
+            const note = document.querySelector("textarea[name=note]").value; 
+            const listTitle = document.querySelector("input[name=list-title]").value;
+            const listItems = document.querySelector("textarea[name=list-items]").value;
+            
+            const success = todoController.createTodo(title, desc, date, priority, completed, note, listTitle, listItems)
+            if (success){
+                console.log("todo created successfully");
+                cleanup.body();
+                document.body.appendChild(projectPage.getPage());
+            } else {
+                console.log("something went wrong, please try again later.");
+            }
+        })
+
         const exitBtn = document.createElement("button");
         exitBtn.type = "button";
         exitBtn.textContent = "Exit";
         buttonContainer.appendChild(exitBtn);
+
+        exitBtn.addEventListener("click", () => {
+            cleanup.body();
+            document.body.appendChild(projectPage.getPage());
+        })
 
         return buttonContainer;
     }

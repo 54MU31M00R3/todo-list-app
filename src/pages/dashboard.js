@@ -9,10 +9,11 @@ const projects = [
 import { cleanup } from "../helper/cleanup";
 import { homePage } from "./home";
 import { userLogger} from "../helper/loggedIn";
+import { projectLogger } from "../helper/projectIn";
 
 import { newProjectForm } from "../forms/newProjectForm";
 import { projectController } from "../controllers/projectController";
-
+import { projectPage } from "./project";
 
 const dashPage = (function () {
     const getHeader = () => {
@@ -67,39 +68,49 @@ const dashPage = (function () {
 
         const userProjects = projectController.getProjects();
 
-        userProjects.forEach((project) => {
-            const projectCard = document.createElement("div");
-            projectCard.className = "project-card";
-            cards.appendChild(projectCard);
+        if (userProjects.length >= 1){
+            userProjects.forEach((project) => {
 
-            const upperCard = document.createElement("div");
-            upperCard.className = "upper-card"
-            projectCard.appendChild(upperCard);
-
-            const projectTitle = document.createElement("div");
-            projectTitle.textContent = project.title;
-            projectTitle.className = "project-title";
-            upperCard.appendChild(projectTitle);
-
-            const projectDate = document.createElement("div");
-            projectDate.textContent = project.date;
-            projectDate.className = "project-date";
-            upperCard.appendChild(projectDate);
-
-            const lowerCard = document.createElement("div");
-            lowerCard.className = "lower-card";
-            projectCard.appendChild(lowerCard);
-
-            const viewButton = document.createElement("button");
-            viewButton.className = "card-button";
-            viewButton.textContent = "View";
-            lowerCard.appendChild(viewButton);
-
-            const deleteButton = document.createElement("button");
-            deleteButton.className = "card-button";
-            deleteButton.textContent = "Delete";
-            lowerCard.appendChild(deleteButton);
-        });
+                const projectCard = document.createElement("div");
+                projectCard.className = "project-card";
+                cards.appendChild(projectCard);
+    
+                const upperCard = document.createElement("div");
+                upperCard.className = "upper-card"
+                projectCard.appendChild(upperCard);
+    
+                const projectTitle = document.createElement("div");
+                projectTitle.textContent = project.title;
+                projectTitle.className = "project-title";
+                upperCard.appendChild(projectTitle);
+    
+                const projectDate = document.createElement("div");
+                projectDate.textContent = project.date;
+                projectDate.className = "project-date";
+                upperCard.appendChild(projectDate);
+    
+                const lowerCard = document.createElement("div");
+                lowerCard.className = "lower-card";
+                projectCard.appendChild(lowerCard);
+    
+                const viewButton = document.createElement("button");
+                viewButton.className = "card-button";
+                viewButton.textContent = "View";
+                lowerCard.appendChild(viewButton);
+    
+                viewButton.addEventListener("click", () => {
+                    cleanup.body()
+                    projectLogger.setActiveProject(project.title);
+                    document.body.appendChild(projectPage.getPage());
+                });
+    
+                const deleteButton = document.createElement("button");
+                deleteButton.className = "card-button";
+                deleteButton.textContent = "Delete";
+                lowerCard.appendChild(deleteButton);
+            });
+        }
+        
         return cards;
     }
     const getPage = () => {

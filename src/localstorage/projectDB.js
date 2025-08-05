@@ -4,7 +4,7 @@ const projectDB = (function () {
     localStorage.setItem("projects", `[${JSON.stringify({
         title: "Cottage Trip",
         date: "2023-11-23",
-        todos: []
+        todos: ["Buy Groceries"]
     })}]`)
     const insertProject = (newProject, activeUser) => {
         try {
@@ -31,7 +31,7 @@ const projectDB = (function () {
     const readUserProjects = (activeUser) => {
         const projects = JSON.parse(localStorage.getItem("projects"));
         
-        let users = JSON.parse(localStorage.getItem("users"));
+        const users = JSON.parse(localStorage.getItem("users"));
 
         const user = users.filter((user) => {
             if (user.username === activeUser){
@@ -51,7 +51,14 @@ const projectDB = (function () {
 
         return userProjects;
     }
-    return { insertProject, readUserProjects };
+    const allProjects = () => {
+        return JSON.parse(localStorage.getItem("projects"));
+    }
+    const updateProjects = (projects) => {
+        localStorage.setItem("projects", JSON.stringify(projects));
+        console.log(projects);
+    }
+    return { insertProject, readUserProjects, allProjects, updateProjects };
 })();
 
 export { projectDB };

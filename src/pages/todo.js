@@ -1,4 +1,12 @@
+import { todoController } from "../controllers/todoController";
+import { cleanup } from "../helper/cleanup";
+import { projectLogger } from "../helper/projectIn";
+import { todoLogger} from "../helper/todoIn";
+import { dashPage } from "./dashboard";
+import { projectPage } from "./project";
+
 const todoPage = (function () {
+
     const getHeader = () => {
         const header = document.createElement("div");
         header.id = "header";
@@ -17,10 +25,23 @@ const todoPage = (function () {
         projectButton.textContent = "Project"
         nav.appendChild(projectButton);
 
+        projectButton.addEventListener("click", () => {
+            cleanup.body()
+            todoLogger.resetActiveTodo();
+            document.body.appendChild(projectPage.getPage());
+        })
+
         const dashboardButton = document.createElement("button");
         dashboardButton.className = "nav-button"
-        dashboardButton.textContent = "New Todo"
+        dashboardButton.textContent = "Dashboard"
         nav.appendChild(dashboardButton);
+
+        dashboardButton.addEventListener("click", () => {
+            cleanup.body()
+            todoLogger.resetActiveTodo();
+            projectLogger.resetActiveProject();
+            document.body.appendChild(dashPage.getPage());
+        })
 
         return header;
     }
@@ -30,30 +51,47 @@ const todoPage = (function () {
         todoButtonsContainer.id = "todo-buttons";
         
         const completeButton = document.createElement("button");
-        completeButton.textContent = "Project"
+        completeButton.textContent = "Completion Status"
         todoButtonsContainer.appendChild(completeButton);
 
-        const editButton = document.createElement("button");
-        editButton.textContent = "Dashboard"
-        todoButtonsContainer.appendChild(editButton);
+        completeButton.addEventListener("click", () => {
+            todoController.chgCompletionStatus();
+            cleanup.body();
+            document.body.appendChild(getPage());
+        })
+
+        const exitButton = document.createElement("button");
+        exitButton.textContent = "Exit"
+        todoButtonsContainer.appendChild(exitButton);
+
+        exitButton.addEventListener("click", () => {
+            cleanup.body();
+            todoLogger.resetActiveTodo();
+            document.body.appendChild(projectPage.getPage());
+        })
 
         return todoButtonsContainer;
     }
     
     const getList = () => {
+        const todo = todoController.getTodo()[0].list;
+        console.log(todo);
+
         const todoList = document.createElement("div");
         todoList.id = "todo-list";
 
         const todoListTitle = document.createElement("div");
         todoListTitle.id = "list-title";
-        todoList.textContent = "Shopping List"
+        todoList.textContent = todo.title;
         todoList.appendChild(todoListTitle);
 
         const listContent = document.createElement("ul");
 
-        const listItem = document.createElement("li");
-        listItem.textContent = "Cabbage"
-        listContent.appendChild(listItem);
+        todo.items.forEach((item) => {
+            const listItem = document.createElement("li");
+            listItem.textContent = item;
+            listContent.appendChild(listItem);
+        });
 
         todoList.appendChild(listContent);
 
@@ -61,39 +99,48 @@ const todoPage = (function () {
     }
 
     const getTodoContent = () => {
+        const todo = todoController.getTodo()[0];
+        console.log(todo);
+
         const content = document.createElement("div");
         content.id = "todo-content";
 
         const todoDate = document.createElement("div");
         todoDate.id = "todo-date";
-        todoDate.textContent = "2025-08-01";
+        todoDate.textContent = todo.dueDate;
         content.appendChild(todoDate);
 
         const todoTitle = document.createElement("div");
         todoTitle.id = "todo-title";
-        todoTitle.textContent = "Buy Groceries"
+        todoTitle.textContent = todo.title;
         content.appendChild(todoTitle);
 
         const todoDesc = document.createElement("div");
         todoDesc.id = "todo-desc";
-        todoDesc.textContent = `Purchase vegetables, 
-                fruits, and dairy products from the
-                supermarket.`
+        todoDesc.textContent = todo.description;
         content.appendChild(todoDesc);
 
         const todoPriority = document.createElement("div");
         todoPriority.id = "todo-priority";
-        todoPriority.textContent = "Priority: High"
+        todoPriority.textContent = `Priority: ${todo.priority}`;
         content.appendChild(todoPriority);
 
         const todoComplete = document.createElement("div");
         todoComplete.id = "todo-complete";
-        todoComplete.textContent = "Completion Status: Incomplete"
+ 
+        let compStatus;
+        if (todo.completed) {
+            compStatus = "Complete";
+        } else {
+            compStatus = "Incomplete"
+        }
+ 
+        todoComplete.textContent = `Completion Status: ${compStatus}`
         content.appendChild(todoComplete);
 
         const todoNotes = document.createElement("div");
         todoNotes.id = "todo-notes";
-        todoNotes.textContent = "Notes: Remember to check for sales on seasonal produce."
+        todoNotes.textContent = `Notes: ${todo.note}`
         content.appendChild(todoNotes);
 
         const todoList = getList();
